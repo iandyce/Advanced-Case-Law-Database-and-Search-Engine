@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Case Law Database & Search Engine</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- Pre-Login Header -->
+    <header id="preLoginHeader">
+        <div class="logo">Advanced <br>Case Law Database <br>& Search Engine</div>
+        <nav class="tabs-container">
+            <ul class="tabs">
+                <li><a href="#home" class="tab-link active">Home</a></li>
+                <li><a href="#search" class="tab-link">Advanced Search</a></li>
+                <li><a href="#about" class="tab-link">About</a></li>
+                <li><a href="#login" class="tab-link">Log In</a></li>
+                <li id="casesTab"><a href="#cases" class="tab-link">Cases</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Dashboard (Hidden Until Login) -->
+    <div id="dashboard" class="dashboard" style="display: none;">
+        <div class="sidebar">
+            <h3>Dashboard</h3>
+            <ul>
+                <li data-tab="home" class="sidebar-link active">Home</li>
+                <li data-tab="about">About Us</li>
+                <li data-tab="search">Advanced Search</li>
+                <li data-tab="cases">Cases</li>
+                <li data-tab="profile">User Profile</li>
+                <li data-tab="constitution">Constitution</li>
+                <li data-tab="contact">Contact Us</li>
+                <li id="logoutBtn">Log Out</li>
+            </ul>
+        </div>
+        <div class="dashboard-content">
+            <section id="home" class="content active">
+                <h2>Welcome to the Case Law Database</h2>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Search for cases...">
+                    <button id="searchButton">Search</button>
+                </div>
+                <div class="home-container">
+                    <div class="map-section">
+                        <h3>Kenya Overview</h3>
+                        <img src="http://localhost:5000/images/Kenyan flag map.jpeg" alt="Kenya Overview" class="map-image">
+                    </div>
+                    <div class="cases-section">
+                        <h3>Recent Cases</h3>
+                        <div id="caseOverview">
+                            <p>Loading overview...</p>
+                        </div>
+                        <ul id="caseList" style="display: none;">
+                            <!-- Populated dynamically after search -->
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="search" class="content">
+                <h2>Advanced Search</h2>
+                <form id="advancedSearchForm">
+                    <label for="caseTitle">Case Title:</label>
+                    <input type="text" id="caseTitle" name="title" placeholder="Enter case title">
+                    <label for="caseNumber">Case Number:</label>
+                    <input type="text" id="caseNumber" name="case_number" placeholder="Enter case number">
+                    <label for="judge">Judge:</label>
+                    <input type="text" id="judge" name="judge" placeholder="Enter judge name">
+                    <label for="dateOfJudgment">Date of Judgment:</label>
+                    <input type="date" id="dateOfJudgment" name="date_of_judgment">
+                    <button type="submit">Search</button>
+                    <button type="reset">Reset</button>
+                </form>
+                <p id="searchResponse" style="display: none; margin-top: 10px;"></p>
+                <div id="searchResults" class="results-container"></div>
+            </section>
+
+            <section id="about" class="content">
+                <h2>About Us</h2>
+                <div class="about-buttons">
+                    <button class="about-button" data-tab="mission">Our Mission</button>
+                    <button class="about-button" data-tab="vision">Our Vision</button>
+                    <button class="about-button" data-tab="team">Our Team</button>
+                    <button class="about-button" data-tab="technology">Our Technology</button>
+                </div>
+                <div class="about-content" id="aboutContent">
+                    <h3>Our Mission</h3>
+                    <p>Loading...</p>
+                </div>
+                <div class="team-profiles">
+                    <h3>Meet Our Team</h3>
+                    <div id="teamMembers" class="team-members">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </section>
+
+            <section id="cases" class="content">
+                <h2>Cases by County</h2>
+                <ul id="casesByCounty"></ul>
+            </section>
+
+            <section id="profile" class="content">
+                <h2>User Profile</h2>
+                <div class="profile-container">
+                    <div class="profile-info">
+                        <h3>Your Details</h3>
+                        <p><strong>Username:</strong> <span id="profileUsername">Loading...</span></p>
+                        <p><strong>Email:</strong> <span id="profileEmail">Loading...</span></p>
+                        <p><strong>Role:</strong> <span id="profileRole">Loading...</span></p>
+                        <p><strong>Account Created:</strong> <span id="profileCreatedAt">Loading...</span></p>
+                    </div>
+                    <div class="profile-edit">
+                        <h3>Edit Profile</h3>
+                        <form id="profileForm">
+                            <label for="editUsername">New Username:</label>
+                            <input type="text" id="editUsername" name="username" placeholder="Enter new username">
+                            <label for="editPassword">New Password:</label>
+                            <input type="password" id="editPassword" name="password" placeholder="Enter new password">
+                            <button type="submit">Update Profile</button>
+                        </form>
+                        <p id="profileResponse" style="display: none; margin-top: 10px;"></p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="constitution" class="content">
+                <h2>Constitution of Kenya</h2>
+                <ul id="constitutionList"></ul>
+            </section>
+
+            <section id="contact" class="content">
+                <h2>Contact Us</h2>
+                <div class="contact-container">
+                    <div class="contact-form">
+                        <h3>Send Us a Message</h3>
+                        <form id="contactForm">
+                            <label for="contactName">Name:</label>
+                            <input type="text" id="contactName" name="name" placeholder="Enter your name" required>
+                            <label for="contactEmail">Email:</label>
+                            <input type="email" id="contactEmail" name="email" placeholder="Enter your email" required>
+                            <label for="contactSubject">Subject:</label>
+                            <input type="text" id="contactSubject" name="subject" placeholder="Enter subject" required>
+                            <label for="contactMessage">Message:</label>
+                            <textarea id="contactMessage" name="message" placeholder="Type your message here" required></textarea>
+                            <button type="submit">Submit</button>
+                        </form>
+                        <p id="contactResponse" style="display: none; margin-top: 10px;"></p>
+                    </div>
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <p><i class="fas fa-envelope"></i> Email: support@caselaw.co.ke</p>
+                        <p><i class="fas fa-phone"></i> Phone: +254 748284868</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Address: Nairobi, Kenya</p>
+                        <div class="social-links">
+                            <h4>Follow Us</h4>
+                            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://x.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                            <a href="https://t.me" target="_blank"><i class="fab fa-telegram"></i></a>
+                            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-section">
+                    <h3>Frequently Asked Questions</h3>
+                    <div class="faq-item">
+                        <h4 class="faq-question">How do I search for a case?</h4>
+                        <p class="faq-answer" style="display: none;">Use the search bar on the Home page or the Advanced Search tab to find cases by title, number, judge, or date.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">Can I access the full Constitution?</h4>
+                        <p class="faq-answer" style="display: none;">Yes, log in and visit the Constitution tab to view all articles and their details.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4 class="faq-question">How do I report an issue?</h4>
+                        <p class="faq-answer" style="display: none;">Fill out this contact form with your issue details, and we’ll get back to you soon.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Pre-Login Container -->
+    <main id="preLoginMain" class="container">
+        <section id="homePreLogin" class="content active">
+            <h2>Welcome to the Case Law Database</h2>
+            <div class="search-bar">
+                <input type="text" id="searchInputPreLogin" placeholder="Search for cases...">
+                <button id="searchButtonPreLogin">Search</button>
+            </div>
+            <div class="home-container">
+                <div class="map-section">
+                    <h3>Kenya Overview</h3>
+                    <img src="http://localhost:5000/images/kenya-overview.png" alt="Kenya Overview" class="map-image">
+                </div>
+                <div class="cases-section">
+                    <h3>Recent Cases</h3>
+                    <div id="caseOverviewPreLogin">
+                        <p>Loading overview...</p>
+                    </div>
+                    <ul id="caseListPreLogin" style="display: none;">
+                        <!-- Populated dynamically after search -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="searchPreLogin" class="content">
+            <h2>Advanced Search</h2>
+            <form id="advancedSearchFormPreLogin">
+                <label for="caseTitlePreLogin">Case Title:</label>
+                <input type="text" id="caseTitlePreLogin" name="title" placeholder="Enter case title">
+                <label for="caseNumberPreLogin">Case Number:</label>
+                <input type="text" id="caseNumberPreLogin" name="case_number" placeholder="Enter case number">
+                <label for="judgePreLogin">Judge:</label>
+                <input type="text" id="judgePreLogin" name="judge" placeholder="Enter judge name">
+                <label for="dateOfJudgmentPreLogin">Date of Judgment:</label>
+                <input type="date" id="dateOfJudgmentPreLogin" name="date_of_judgment">
+                <button type="submit">Search</button>
+                <button type="reset">Reset</button>
+            </form>
+            <p id="searchResponsePreLogin" style="display: none; margin-top: 10px;"></p>
+            <div id="searchResultsPreLogin" class="results-container"></div>
+        </section>
+
+        <section id="aboutPreLogin" class="content">
+            <h2>About Us</h2>
+            <div class="about-buttons">
+                <button class="about-button" data-tab="mission">Our Mission</button>
+                <button class="about-button" data-tab="vision">Our Vision</button>
+                <button class="about-button" data-tab="team">Our Team</button>
+                <button class="about-button" data-tab="technology">Our Technology</button>
+            </div>
+            <div class="about-content" id="aboutContentPreLogin">
+                <h3>Our Mission</h3>
+                <p>Loading...</p>
+            </div>
+            <div class="team-profiles">
+                <h3>Meet Our Team</h3>
+                <div id="teamMembersPreLogin" class="team-members">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <section id="login" class="content">
+            <h2>Authentication</h2>
+            <div class="auth-toggle">
+                <button id="signinBtn" class="active">Sign In</button>
+                <button id="signupBtn">Sign Up</button>
+            </div>
+            <form id="loginForm" class="active">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Enter email">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter password">
+                <button type="submit">Sign In</button>
+            </form>
+            <form id="signupForm">
+                <label for="regUsername">Username:</label>
+                <input type="text" id="regUsername" name="username" placeholder="Enter username">
+                <label for="regEmail">Email:</label>
+                <input type="email" id="regEmail" name="email" placeholder="Enter email">
+                <label for="regPassword">Password:</label>
+                <input type="password" id="regPassword" name="password" placeholder="Enter password">
+                <button type="submit">Sign Up</button>
+            </form>
+        </section>
+
+        <section id="casesPreLogin" class="content">
+            <h2>Cases by County</h2>
+            <ul id="casesByCountyPreLogin"></ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>@blackie | Follow us on</p>
+        <div class="social-icons">
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://telegram.me" target="_blank"><i class="fab fa-telegram"></i></a>
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script> 
+</body>
+</html>

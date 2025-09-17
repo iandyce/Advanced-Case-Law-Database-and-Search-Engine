@@ -1,0 +1,706 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #E6E6FA;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Styling */
+header {
+    background: linear-gradient(to left, #3b82f6, #9333ea);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.tabs-container {
+    margin-right: 20px;
+}
+
+/* Add spacing to compensate for fixed header */
+main {
+    padding-top: 100px;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Navigation Tabs */
+.tabs {
+    display: flex;
+    justify-content: center;
+    background: #0056b3;
+    padding: 10px;
+    list-style: none;
+    margin: 0;
+}
+
+.tabs li {
+    margin: 0 10px;
+}
+
+.tabs a {
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+    border-radius: 5px;
+}
+
+.tabs a.active {
+    background: #ff5733;
+}
+
+.tabs a:hover {
+    background: #ff4500;
+    transform: scale(1.05);
+}
+
+/* Simple Search Bar Restoration */
+.search-bar {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    position: relative;
+    z-index: 900;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.search-bar input {
+    width: 60%;
+    max-width: 500px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-bar button {
+    margin-left: 10px;
+    padding: 8px 15px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background: #0056b3;
+}
+
+/* Home Page Layout */
+.home-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    flex-direction: row;
+    width: 100%;
+    gap: 15px;
+}
+
+/* Sidebar Styling */
+.cases-list {
+    width: 40%;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    max-height: 75vh;
+}
+
+.map-section, .cases-section {
+    flex: 1;
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cases-section {
+    overflow-y: auto;
+    max-height: 70vh;
+}
+
+/* Map Container Styling */
+.map-section img.map-image {
+    width: 50%;
+    height: 200px; /* Matches previous map height */
+    object-fit: cover; /* Ensures image fits nicely */
+    border-radius: 5px;
+}
+
+/* Remove unused #kenyaMap rule */
+.map-container {
+    width: 58%;
+    text-align: center;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.map-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Content Sections */
+.content {
+    display: none;
+    padding: 20px;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+    width: 90%;
+}
+
+.content.active {
+    display: block;
+}
+
+/* Buttons */
+button {
+    padding: 10px;
+    border: none;
+    background: #007BFF;
+    color: white;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Back Button */
+.back-button {
+    background: #ff4500;
+    margin-top: 20px;
+}
+
+.back-button:hover {
+    background: #c0392b;
+}
+
+/* Input Fields */
+input {
+    display: block;
+    margin: 10px auto;
+    padding: 8px;
+    width: 80%;
+    max-width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border 0.3s ease;
+}
+
+input:focus {
+    border: 1px solid #007BFF;
+    outline: none;
+}
+
+/* Footer */
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Footer Social Links */
+.footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.footer-social a {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: #ff4500;
+}
+
+/* Font Awesome Icons */
+.footer-social i {
+    font-size: 24px;
+}
+
+.social-icons a {
+    margin: 0 10px;
+    color: white;
+    font-size: 20px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Authentication Toggle */
+.auth-toggle {
+    margin-bottom: 15px;
+}
+
+.auth-toggle button {
+    padding: 8px 15px;
+    margin: 0 5px;
+    border: none;
+    background: #007BFF;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.auth-toggle button.active {
+    background: #800080;
+}
+
+#loginForm, #signupForm {
+    display: none; /* Default to hidden */
+}
+
+#loginForm.active, #signupForm.active {
+    display: block; /* Show only the active form */
+}
+
+#casesTab {
+    display: none;
+}
+
+#cases ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#cases ul li {
+    margin: 10px 0;
+}
+
+#caseList li {
+    cursor: pointer;
+    padding: 5px;
+}
+
+#caseList li:hover {
+    background-color: #f0f0f0;
+}
+
+/* About Page Buttons */
+.about-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.about-button {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(to bottom right, #3b82f6, #9333ea);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+}
+
+.about-button:hover {
+    background: linear-gradient(to bottom right, #0056b3, #800080);
+    transform: scale(1.05);
+}
+
+.about-button.active {
+    background: #007BFF;
+}
+
+.about-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    text-align: left;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-content h3 {
+    margin-top: 0;
+    color: #3b82f6;
+}
+
+.about-content p {
+    line-height: 1.6;
+}
+
+/* Team Profiles Styling */
+.team-profiles {
+    margin-top: 2rem;
+}
+
+.team-profiles h3 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.team-members {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.team-member {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+}
+
+.team-member img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.team-member h4 {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.team-member p.role {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-bottom: 0.5rem;
+}
+
+.team-member p.bio {
+    font-size: 0.9rem;
+    color: #34495e;
+    line-height: 1.4;
+}
+
+/* Dashboard Styling */
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.sidebar {
+    width: 250px;
+    background: linear-gradient(to bottom, #3b82f6, #9333ea);
+    color: white;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.sidebar h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 15px;
+    margin: 5px 0;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.sidebar li:hover {
+    background: #ff4500;
+    transform: scale(1.05);
+}
+
+.sidebar li.active {
+    background: #ff5733;
+}
+
+#logoutBtn {
+    background: #ff4500;
+    margin-top: 20px;
+}
+
+#logoutBtn:hover {
+    background: #c0392b;
+}
+
+.dashboard-content {
+    margin-left: 250px;
+    padding: 20px;
+    flex-grow: 1;
+    background-color: #E6E6FA;
+    min-height: 100vh;
+}
+
+/* Constitution List Styling */
+#constitutionList {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+#constitutionList li {
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    transition: background 0.3s ease;
+}
+
+#constitutionList li:hover {
+    background-color: #f0f0f0;
+}
+
+#constitutionDetails button {
+    background: #ff4500;
+}
+
+#constitutionDetails button:hover {
+    background: #c0392b;
+}
+
+.constitution-details {
+    margin-top: 10px;
+    padding: 10px;
+    background: #f9f9f9;
+    border-left: 3px solid #3b82f6;
+    border-radius: 3px;
+    font-size: 0.95em;
+}
+
+/* Contact Us Styling */
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 20px auto;
+    flex-wrap: wrap;
+}
+
+.contact-form, .contact-info {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-width: 300px;
+}
+
+.contact-form h3, .contact-info h3 {
+    color: #3b82f6;
+    margin-bottom: 15px;
+}
+
+.contact-form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.contact-form textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.contact-info p {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.contact-info i {
+    margin-right: 10px;
+    color: #9333ea;
+}
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-links h4 {
+    margin-bottom: 10px;
+    color: #3b82f6;
+}
+
+.social-links a {
+    margin: 0 10px;
+    font-size: 24px;
+    color: #3b82f6;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #ff4500;
+}
+
+/* FAQ Styling */
+.faq-section {
+    max-width: 1000px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.faq-section h3 {
+    color: #3b82f6;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.faq-item {
+    margin-bottom: 10px;
+}
+
+.faq-question {
+    cursor: pointer;
+    color: #9333ea;
+    font-weight: bold;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.faq-question:hover {
+    background: #e0e0e0;
+}
+
+.faq-answer {
+    padding: 10px;
+    line-height: 1.6;
+    color: #34495e;
+}
+
+/* Profile Styling */
+.profile-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 20px auto;
+    flex-wrap: wrap;
+}
+
+.profile-info, .profile-edit {
+    flex: 1;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-width: 300px;
+}
+
+.profile-info h3, .profile-edit h3 {
+    color: #3b82f6;
+    margin-bottom: 15px;
+}
+
+.profile-info p {
+    margin: 10px 0;
+}
+
+.profile-edit label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.profile-edit input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
